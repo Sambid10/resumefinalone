@@ -1,0 +1,98 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Layout {
+  Classic
+  Modern
+}
+
+model Resume {
+  id     String @id @default(uuid())
+  userId String
+
+  name        String?
+  description String?
+
+  photoUrl       String?
+  colorHex       String           @default("#000000")
+  borderStyle    String           @default("squircle")
+  summary        String?
+  firstName      String?
+  lastName       String?
+  jobTitle       String?
+  city           String?
+  country        String?
+  phone          String?
+  email          String?
+  workExperience WorkExperience[]
+  education      Education[]
+  project        Project[]
+  skills         String[]
+  createdAt      DateTime         @default(now())
+  updatedAt      DateTime         @updatedAt
+}
+
+model WorkExperience {
+  id String @id @default(uuid())
+
+  position    String?
+  company     String?
+  startDate   DateTime?
+  endDate     DateTime?
+  description String?
+
+  resumeId String
+  resume   Resume @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@map("work_experiences")
+}
+
+model Education {
+  id String @id @default(uuid())
+
+  universityName  String?
+  degreeName      String?
+  institutionName String?
+  gpa             String?
+  startDate       DateTime?
+  endDate         DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  resumeId String
+  resume   Resume @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+
+  @@map("education")
+}
+
+model Project {
+  id String @id @default(uuid())
+
+  projectName String?
+  startDate   DateTime?
+  endDate     DateTime?
+  projectSubDescription String?
+  projectDescription String?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  resumeId String
+  resume   Resume @relation(fields: [resumeId], references: [id], onDelete: Cascade)
+}
