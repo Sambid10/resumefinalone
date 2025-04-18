@@ -18,7 +18,10 @@ export const personalinfoSchema=z.object({
     city:optionalString,
     country:optionalString,
     phone:optionalString,
-    email:optionalString
+    email:optionalString,
+    linkedinUrl:optionalString,
+    websiteUrl:optionalString,
+    githubUrl:optionalString,
 })
 
 export type personalinfoValues=z.infer<typeof personalinfoSchema>

@@ -46,7 +46,7 @@ export default function ResumeEditor({resumeToEdit}:ResumeEditorProps) {
       </header> */}
 
       {/* Main content area */}
-      <main className="mb-16 flex-1 flex px-6 xl:px-0 max-w-7xl mx-auto w-full ">
+      <main className="mb-16 flex-1 flex px-6 xl:px-0 max-w-[100rem] mx-auto w-full ">
         <div className="flex flex-col lg:flex-row flex-1 w-full ">
           {/* Left */}
 

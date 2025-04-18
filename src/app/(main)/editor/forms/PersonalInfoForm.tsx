@@ -28,6 +28,10 @@ export default function PersonalInfoForm({resumeData,setResumeData}:EditorFormPr
       jobTitle: resumeData.jobTitle || "",
       lastName: resumeData.lastName || "",
       phone: resumeData.phone || "",
+      githubUrl:resumeData.githubUrl || "",
+      linkedinUrl:resumeData.linkedinUrl || "",
+      websiteUrl:resumeData.websiteUrl || ""
+
     },
   });
   const triggerTimeout = useRef<NodeJS.Timeout | null>(null);
@@ -73,7 +77,9 @@ export default function PersonalInfoForm({resumeData,setResumeData}:EditorFormPr
       </p>
       <div className="max-w-xl mx-auto">
         <Form {...form}>
-          <form className="flex flex-col gap-4 mt-6">
+          <form
+           onSubmit={(e) =>e.preventDefault() }
+          className="flex flex-col gap-4 mt-6">
             <FormField
               name="photo"
               control={form.control}
@@ -264,6 +270,70 @@ export default function PersonalInfoForm({resumeData,setResumeData}:EditorFormPr
                 </FormItem>
               )}
             ></FormField>
+             <FormField
+              name="websiteUrl"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem className="group">
+                  <FormLabel className="group-focus-within:text-blue-300">
+                   Portfolio/Personal website:
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      className="peer:"
+                      type="text"
+                      {...field}
+                      placeholder="Enter your Portfolio/Personal website"
+                    />
+                  </FormControl>
+
+                  <FormMessage />
+                </FormItem>
+              )}
+            ></FormField>
+             <FormField
+              name="linkedinUrl"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem className="group">
+                  <FormLabel className="group-focus-within:text-blue-300">
+                   Linkedin url:
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      className="peer:"
+                      type="text"
+                      {...field}
+                      placeholder="Enter your linkedin url"
+                    />
+                  </FormControl>
+
+                  <FormMessage />
+                </FormItem>
+              )}
+            ></FormField>
+            <FormField
+              name="githubUrl"
+              control={form.control}
+              render={({ field }) => (
+                <FormItem className="group">
+                  <FormLabel className="group-focus-within:text-blue-300">
+                   Github url:
+                  </FormLabel>
+                  <FormControl>
+                    <Input
+                      className="peer:"
+                      type="text"
+                      {...field}
+                      placeholder="Enter your github url"
+                    />
+                  </FormControl>
+
+                  <FormMessage />
+                </FormItem>
+              )}
+            ></FormField>
+            
           </form>
         </Form>
       </div>

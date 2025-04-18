@@ -2,19 +2,18 @@
 import useDimension from "@/hooks/useDimension";
 import { cn } from "@/lib/utils";
 import { ResumeValues } from "@/lib/validation";
-import Image from "next/image";
-import React, { useEffect, useState } from "react";
-import { formatDate } from "date-fns";
-import { Badge } from "@/components/ui/badge";
 
+import React from "react";
+import { formatDate } from "date-fns";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 interface Props {
   resumeData: ResumeValues;
   className?: string;
   contentRef?: React.Ref<HTMLDivElement>;
 }
 import { useRef } from "react";
-import { BorderStyles } from "@/app/(main)/editor/forms/BorderStyleButton";
-import { Mail, Phone, Skull } from "lucide-react";
+import { Globe, Mail, Phone } from "lucide-react";
+
 export default function ClassicResumePreview({
   resumeData,
   className,
@@ -61,6 +60,9 @@ function PersonalPreviewSection({ resumeData }: ResumeSectionProps) {
     firstName,
     lastName,
     colorHex,
+    githubUrl,
+    linkedinUrl,
+    websiteUrl,
     borderStyle,
     jobTitle,
     phone,
@@ -104,30 +106,55 @@ function PersonalPreviewSection({ resumeData }: ResumeSectionProps) {
         >
           {firstName} {lastName}
         </p>
-        <p
-          style={{
-            lineHeight: "50%",
-          }}
-          className="text-[16px] mt-2"
-        >
-          {city}
-          {city && country ? ", " : ""}
-          {country}
-        </p>
-        <span className="flex items-center gap-2">
-          {email && (
-            <div className="flex items-center underline underline-offset-2 text-[16px] gap-1">
-              <Mail className="size-3" />
-              {email}
-            </div>
-          )}
-          {phone && (
-            <div className="flex items-center underline underline-offset-2 text-[16px] gap-2">
-              <Phone className="size-3" />
-              {phone}
-            </div>
-          )}
-        </span>
+        <div 
+        style={
+          {lineHeight:"129%"}
+        }
+        className="flex flex-col  justify-center text-center items-center mt-1">
+          <span
+            
+            className="flex items-center gap-3"
+          >
+            {websiteUrl && (
+              <span className="flex items-center gap-1 text-[16px]">
+                <Globe className="size-4" />
+                <h1>{githubUrl}</h1>
+              </span>
+            )}
+            {githubUrl && (
+              <span className="flex items-center gap-1 text-[16px]">
+                <FaGithub className="size-4" />
+                <h1>{githubUrl}</h1>
+              </span>
+            )}
+            {linkedinUrl && (
+              <div className="flex items-center text-[16px] gap-1">
+                <FaLinkedin className="size-4" />
+                {linkedinUrl}
+              </div>
+            )}
+          </span>
+          <span className="flex items-center gap-3">
+            {email && (
+              <div className="flex items-center  text-[16px] gap-1">
+                <Mail className="size-4" />
+                <h1>{email}</h1>
+              </div>
+            )}
+            {phone && (
+              <div className="flex items-center text-[16px] gap-1">
+                <Phone className="size-3" />
+                <h1>{phone}</h1>
+              </div>
+            )}
+          </span>
+          <span className="text-[16px] flex items-center gap-1">
+            <h1>{city}</h1>
+            <h1 className="-ml-1">{city && country ? ", " : ""}</h1>
+            <h1> {country}</h1>
+          </span>
+        </div>
+
         {/* <p style={{ color: colorHex }} className="font-medium">
           {jobTitle}
         </p> */}
@@ -168,7 +195,9 @@ function WorkExperiencePreviewSection({ resumeData }: ResumeSectionProps) {
                     {formatDate(exp.startDate, "MM/yyyy")} -{" "}
                   </h1>
                   <h1 className="font-semibold text-sm tracking-wider">
-                    {exp.endDate ? formatDate(exp.endDate, "MM/yyyy") : "Present"}
+                    {exp.endDate
+                      ? formatDate(exp.endDate, "MM/yyyy")
+                      : "Present"}
                   </h1>
                 </span>
               )}
@@ -180,7 +209,10 @@ function WorkExperiencePreviewSection({ resumeData }: ResumeSectionProps) {
                   ?.split("\n")
                   .filter((line) => line !== "")
                   .map((line, i) => (
-                    <span key={i} className="relative tracking-normal leading-snug">
+                    <span
+                      key={i}
+                      className="relative tracking-normal leading-snug"
+                    >
                       <h1 className="absolute left-0">•</h1>
                       <h1 className="ml-4">{line}</h1>
                     </span>
@@ -275,7 +307,9 @@ function ProjectPreviewSection({ resumeData }: ResumeSectionProps) {
                         {formatDate(pro.startDate, "MM/yyyy")} - {""}
                       </h1>
                       <h1 className="font-semibold tracking-wider text-sm">
-                        {pro.endDate ? formatDate(pro.endDate, "MM/yyyy") : "Present"}
+                        {pro.endDate
+                          ? formatDate(pro.endDate, "MM/yyyy")
+                          : "Present"}
                       </h1>
                     </span>
                   )}
@@ -286,7 +320,10 @@ function ProjectPreviewSection({ resumeData }: ResumeSectionProps) {
                     .filter((line) => line !== "")
                     .map((line, i) => (
                       <span key={i}>
-                        <h1 key={i} className="text-base font-medium leading-tight">
+                        <h1
+                          key={i}
+                          className="text-base font-medium leading-tight"
+                        >
                           {line}
                         </h1>
                       </span>
@@ -299,7 +336,10 @@ function ProjectPreviewSection({ resumeData }: ResumeSectionProps) {
                     ?.split("\n")
                     .filter((line) => line !== "")
                     .map((line, i) => (
-                      <span key={i} className="relative tracking-normal leading-snug">
+                      <span
+                        key={i}
+                        className="relative tracking-normal leading-snug"
+                      >
                         <h1 className="absolute left-0">•</h1>
                         <h1 className="ml-4">{line}</h1>
                       </span>
@@ -331,7 +371,10 @@ function SkillsPreviewSection({ resumeData }: ResumeSectionProps) {
           .flatMap((skill) => skill.split(","))
           .filter((s) => s.trim() !== "")
           .map((skill, i) => (
-            <span key={i} className="flex items-center gap-1 tracking-normal leading-snug">
+            <span
+              key={i}
+              className="flex items-center gap-1 tracking-normal leading-snug"
+            >
               <span className="text-lg">•</span>
               <span className="text-base font-medium">{skill.trim()}</span>
             </span>
