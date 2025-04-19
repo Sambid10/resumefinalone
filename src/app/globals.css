@@ -193,9 +193,13 @@ scrollbar-track {
 
 .modern {
   overflow: auto;
-  font-family: serif;  /* Allows scrolling */
+  font-family: sans-serif;  /* Allows scrolling */
 }
 
+.left-section{
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
 
 /* For WebKit browsers (Chrome, Safari) */
 .modern::-webkit-scrollbar {

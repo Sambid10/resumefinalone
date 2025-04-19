@@ -1,3 +1,4 @@
+"use client"
 import { ResumeValues } from "@/lib/validation"
 import { useEffect, useState } from "react"
 import { useDebounce } from "./useDebounce"

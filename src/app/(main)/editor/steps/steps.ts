@@ -6,6 +6,7 @@ import EducationForm from "../forms/EducationForm"
 import SkillsForm from "../forms/SkillsForm"
 import SummaryForm from "../forms/SummaryForm"
 import ProjectForm from "../forms/ProjectForm"
+import ReferenceForm from "../forms/ReferenceForm"
 export const steps:{
     title:string,
     component:React.ComponentType<EditorFormProps>
@@ -36,6 +37,11 @@ export const steps:{
     title:"Skills",
     component:SkillsForm,
     key:"skills"
+},
+{
+    title:"Reference",
+    component:ReferenceForm,
+    key:"reference"
 },
 {
     title:"Summary",

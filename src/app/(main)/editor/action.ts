@@ -9,7 +9,7 @@ export async function saveResume(values: ResumeValues) {
   const { id } = values;
   console.log(values);
 
-  const { photo, workExperiences, educations, projects,...resumeValues } =
+  const { photo, workExperiences, educations, projects,references,...resumeValues } =
     ResumeSchema.parse(values);
   const { userId } = await auth();
   if (!userId) {
@@ -53,6 +53,12 @@ export async function saveResume(values: ResumeValues) {
             ...exp,
             startDate:exp.startDate ? new Date(exp.startDate) :undefined,
             endDate:exp.endDate ? new Date(exp.endDate) :undefined
+          }))
+        },
+        reference:{
+          deleteMany:{},
+          create:references?.map((ref)=>({
+            ...ref
           }))
         },
         education:{

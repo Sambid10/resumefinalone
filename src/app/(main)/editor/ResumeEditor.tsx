@@ -46,15 +46,18 @@ export default function ResumeEditor({resumeToEdit}:ResumeEditorProps) {
       </header> */}
 
       {/* Main content area */}
-      <main className="mb-16 flex-1 flex px-6 xl:px-0 max-w-[100rem] mx-auto w-full ">
+      <main className="mb-16  flex-1 flex px-6 xl:px-0 max-w-[100rem] mx-auto w-full ">
         <div className="flex flex-col lg:flex-row flex-1 w-full ">
           {/* Left */}
 
-          <div className=" p-4 overflow-y-auto border-stone-700 w-full h-[calc(100dvh-64px)] ">
-            <div>
+          <div className="overflow-y-auto left-section border-stone-700 w-full h-[calc(100dvh-64px)] ">
+            <div className=" sticky top-0  flex items-center justify-center backdrop-blur-3xl z-20 border-b border-slate-600">
               <BreadCrumbs currentStep={currentStep} setCurrentStep={setStep} />
             </div>
+            <div className="py-4">
             {FormComponent && <FormComponent resumeData={resumeData} setResumeData={setResumeData}/>}
+            </div>
+            
           </div>
           {/* Right */}
           <div className="p-4 overflow-y-auto border-t lg:border-t-0 lg:border-l border-stone-700 w-full h-[calc(100dvh-64px)] ">

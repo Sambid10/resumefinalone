@@ -57,6 +57,13 @@ export function mapToResumeValues(data: ResumeServerData): ResumeValues {
       institutionName:edu.institutionName || undefined,
       universityName:edu.universityName || undefined
     })),
+    references:data.reference.map((refe,i)=>({
+      emailAddress:refe.emailAddress || undefined,
+      location:refe.location || undefined,
+      organizationName:refe.organizationName || undefined,
+      personName:refe.personName || undefined,
+      phoneNo:refe.phoneNo || undefined
+    })),
     colorHex:data.colorHex,
     borderStyle:data.borderStyle,
     skills:data.skills,

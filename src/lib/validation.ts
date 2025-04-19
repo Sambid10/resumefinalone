@@ -68,7 +68,22 @@ export type skillValues=z.infer<typeof skillsSchema>
 export const SummarySchema=z.object({
     summary:optionalString
 })
+
 export type summaryValues=z.infer<typeof SummarySchema>
+
+export const referenceSchema=z.object({
+    references:z.array(
+        z.object({
+            personName:optionalString,
+            organizationName:optionalString,
+            emailAddress:optionalString,
+            location:optionalString,
+            phoneNo:optionalString,
+        })
+    ).optional()
+})
+export type referenceValues=z.infer<typeof referenceSchema>
+
 
 export const ResumeSchema=z.object({
     ...generalinfoSchema.shape,
@@ -78,6 +93,7 @@ export const ResumeSchema=z.object({
     ...skillsSchema.shape,
     ...SummarySchema.shape,
     ...projectSchema.shape,
+    ...referenceSchema.shape,
     colorHex:optionalString,
     borderStyle:optionalString,
 })

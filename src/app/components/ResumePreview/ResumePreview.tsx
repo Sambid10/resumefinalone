@@ -43,6 +43,7 @@ export default function ClassicResumePreview({
         <EducationSectionPreview resumeData={resumeData} />
         <WorkExperiencePreviewSection resumeData={resumeData} />
         <ProjectPreviewSection resumeData={resumeData} />
+        <ReferencePreviewSection resumeData={resumeData} />
         <SkillsPreviewSection resumeData={resumeData} />
       </div>
     </div>
@@ -106,15 +107,11 @@ function PersonalPreviewSection({ resumeData }: ResumeSectionProps) {
         >
           {firstName} {lastName}
         </p>
-        <div 
-        style={
-          {lineHeight:"129%"}
-        }
-        className="flex flex-col  justify-center text-center items-center mt-1">
-          <span
-            
-            className="flex items-center gap-3"
-          >
+        <div
+          style={{ lineHeight: "129%" }}
+          className="flex flex-col  justify-center text-center items-center mt-1"
+        >
+          <span className="flex items-center gap-3">
             {websiteUrl && (
               <span className="flex items-center gap-1 text-[16px]">
                 <Globe className="size-4" />
@@ -353,6 +350,47 @@ function ProjectPreviewSection({ resumeData }: ResumeSectionProps) {
     </div>
   );
 }
+
+function ReferencePreviewSection({ resumeData }: ResumeSectionProps) {
+  const { references, colorHex } = resumeData;
+  const ReferenceisnotEmpty = references?.filter(
+    (pro) => Object.values(pro).filter(Boolean).length > 0
+  );
+  if (!ReferenceisnotEmpty) return null;
+  return (
+    <div className="space-y-2 ">
+      <span style={{ color: colorHex }} className="text-xl font-semibold">
+        <p className="uppercase tracking-wider text-2xl font-bold">Reference</p>
+        <hr
+          style={{ borderColor: colorHex }}
+          className="border-[0.10rem]  mb-1 border-gray-400"
+        />
+      </span>
+      {ReferenceisnotEmpty.map((refe, i) => (
+        <div key={i} className="space-y-2 break-inside-avoid">
+          <div 
+         
+          className="flex flex-col leading-tight">
+            <h1 className="font-semibold">{refe.personName}</h1>
+
+            <div className="flex items-center font-semibold">
+              <h1>{refe.organizationName}</h1>
+              {refe.phoneNo && refe.emailAddress ? "," : ""}
+              <h1 className="ml-1">{refe.location}</h1>
+            </div>
+            <div className="mt-[2px]">
+              {refe.phoneNo &&   <h1>Phone no: {refe.phoneNo}</h1>}
+          
+              {refe.emailAddress &&  <h1 className="">Email Address: {refe.emailAddress}</h1>}
+           
+         </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function SkillsPreviewSection({ resumeData }: ResumeSectionProps) {
   const { skills, colorHex } = resumeData;
   if (!skills?.length) return null;

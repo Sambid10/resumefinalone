@@ -29,7 +29,7 @@ export default async function Resumepage() {
 
   return (
     <div className="px-6 xl:px-0 pt-6  w-full mx-auto max-w-7xl font-roboto relative z-30">
-         <div className="font-roboto absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
+         <div className=" absolute bottom-0 left-0 right-0 top-0 bg-[linear-gradient(to_right,#4f4f4f2e_1px,transparent_1px),linear-gradient(to_bottom,#4f4f4f2e_1px,transparent_1px)] bg-[size:14px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]"></div>
       <div className="w-full flex justify-center mb-5">
         <Button asChild className="mx-auto relative z-10 ">
           <Link href={"/editor"}>
