@@ -21,7 +21,7 @@ export default function Navbar() {
             <div>
             <h1 
           
-            className="font-bebas  tracking-widest text-xl md:text-2xl">Resume Builder</h1>
+            className="font-sans font-bold  tracking-tight text-xl md:text-2xl">Resume Builder</h1>
             </div>
             
         </Link>

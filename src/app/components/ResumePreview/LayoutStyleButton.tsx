@@ -2,7 +2,7 @@
 // import { Layout } from "@/app/(main)/editor/ResumePreviewSection";
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { FormInputIcon } from "lucide-react";
+import { FormInputIcon ,LayoutPanelLeft} from "lucide-react";
 import { X } from "lucide-react";
 import {
   Dialog,
@@ -24,12 +24,12 @@ export default function LayoutStyleButton({resume}:{
   return (
     <div>
       <Button
-        title="Change Border Radius"
+        title="Change Resume Layout"
         size={"icon"}
         onClick={() => setDialogopen(true)}
-        className="bg-[#121212] text-gray hover:bg-black"
+        className="bg-[#121212] border  border-stone-400 text-gray hover:bg-black"
       >
-        <FormInputIcon className="size-5" />
+        <LayoutPanelLeft size={5}/>
       </Button>
       <LayoutChooserDialog
       resumeData={resume}

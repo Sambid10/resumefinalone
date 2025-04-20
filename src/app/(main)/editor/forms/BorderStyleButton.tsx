@@ -25,7 +25,7 @@ export default function BorderStyleButton({borderStyle,changeborderStyle}:Border
     size={"icon"}
     onClick={(HandleClick)}
    
-    className="bg-[#121212] text-gray hover:bg-black">
+    className="bg-[#121212] border border-stone-400 text-gray hover:bg-black">
         <Icon className='size-5'/>
     </Button>
   )

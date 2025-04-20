@@ -32,7 +32,7 @@ export default function ClassicResumePreview({
       <div
         ref={contentRef}
         id="resumePreviewContent"
-        className={cn("space-y-6 p-6 leading-relaxed", !width && "invisible")}
+        className={cn("space-y-7 p-6 leading-relaxed", !width && "invisible")}
         style={{
           zoom: (1 / 794) * width,
           fontFamily: "serif",
@@ -43,8 +43,9 @@ export default function ClassicResumePreview({
         <EducationSectionPreview resumeData={resumeData} />
         <WorkExperiencePreviewSection resumeData={resumeData} />
         <ProjectPreviewSection resumeData={resumeData} />
-        <ReferencePreviewSection resumeData={resumeData} />
+      
         <SkillsPreviewSection resumeData={resumeData} />
+        <ReferencePreviewSection resumeData={resumeData} />
       </div>
     </div>
   );
@@ -56,7 +57,6 @@ interface ResumeSectionProps {
 function PersonalPreviewSection({ resumeData }: ResumeSectionProps) {
   const {
     city,
-    photo,
     country,
     firstName,
     lastName,
@@ -64,41 +64,11 @@ function PersonalPreviewSection({ resumeData }: ResumeSectionProps) {
     githubUrl,
     linkedinUrl,
     websiteUrl,
-    borderStyle,
-    jobTitle,
     phone,
     email,
   } = resumeData;
-  // const [photoSrc, setphotoSrc] = useState(photo instanceof File ? "" : photo);
-
-  // useEffect(() => {
-  //   const objectUrl = photo instanceof File ? URL.createObjectURL(photo) : "";
-  //   if (objectUrl) {
-  //     setphotoSrc(objectUrl);
-  //   }
-  //   if (photo === null) setphotoSrc("");
-  //   return () => {
-  //     URL.revokeObjectURL(objectUrl);
-  //   };
-  // }, [photo]);
   return (
-    /* {photoSrc && (
-        <Image
-          style={{
-            borderRadius:
-              borderStyle === BorderStyles.SQUARE
-                ? "0px"
-                : borderStyle === BorderStyles.CIRCLE
-                ? "999px"
-                : "10%",
-          }}
-          src={photoSrc}
-          width={100}
-          height={100}
-          alt="author puc"
-          className="aspect-square object-cover"
-        />
-      )} */
+   
     <div className="space-y-2.5 w-full ">
       <div className="space-y-1 flex justify-center flex-col items-center w-full">
         <p
@@ -115,7 +85,7 @@ function PersonalPreviewSection({ resumeData }: ResumeSectionProps) {
             {websiteUrl && (
               <span className="flex items-center gap-1 text-[16px]">
                 <Globe className="size-4" />
-                <h1>{githubUrl}</h1>
+                <h1>{websiteUrl}</h1>
               </span>
             )}
             {githubUrl && (
@@ -279,7 +249,7 @@ function ProjectPreviewSection({ resumeData }: ResumeSectionProps) {
   const projectisnotEmpty = projects?.filter(
     (pro) => Object.values(pro).filter(Boolean).length > 0
   );
-  if (!projectisnotEmpty) return null;
+  if (!projectisnotEmpty?.length) return null;
 
   return (
     <div className="space-y-2 ">
@@ -356,7 +326,7 @@ function ReferencePreviewSection({ resumeData }: ResumeSectionProps) {
   const ReferenceisnotEmpty = references?.filter(
     (pro) => Object.values(pro).filter(Boolean).length > 0
   );
-  if (!ReferenceisnotEmpty) return null;
+  if (!ReferenceisnotEmpty?.length) return null;
   return (
     <div className="space-y-2 ">
       <span style={{ color: colorHex }} className="text-xl font-semibold">
@@ -368,9 +338,7 @@ function ReferencePreviewSection({ resumeData }: ResumeSectionProps) {
       </span>
       {ReferenceisnotEmpty.map((refe, i) => (
         <div key={i} className="space-y-2 break-inside-avoid">
-          <div 
-         
-          className="flex flex-col leading-tight">
+          <div className="flex flex-col leading-tight">
             <h1 className="font-semibold">{refe.personName}</h1>
 
             <div className="flex items-center font-semibold">
@@ -379,11 +347,12 @@ function ReferencePreviewSection({ resumeData }: ResumeSectionProps) {
               <h1 className="ml-1">{refe.location}</h1>
             </div>
             <div className="mt-[2px]">
-              {refe.phoneNo &&   <h1>Phone no: {refe.phoneNo}</h1>}
-          
-              {refe.emailAddress &&  <h1 className="">Email Address: {refe.emailAddress}</h1>}
-           
-         </div>
+              {refe.phoneNo && <h1>Phone no: {refe.phoneNo}</h1>}
+
+              {refe.emailAddress && (
+                <h1 className="">Email Address: {refe.emailAddress}</h1>
+              )}
+            </div>
           </div>
         </div>
       ))}
@@ -429,11 +398,17 @@ function SummaryPreviewSection({ resumeData }: ResumeSectionProps) {
     <>
       <div className="space-y-2 break-inside-avoid">
         <span style={{ color: colorHex }} className="text-xl font-semibold">
-          <p className="uppercase tracking-wider text-2xl font-bold">PROFILE</p>
-          <hr
-            style={{ borderColor: colorHex }}
-            className="border-[0.10rem]  mb-1 border-gray-400"
-          />
+          {summary && (
+            <>
+              <p className="uppercase tracking-wider text-2xl font-bold">
+                PROFILE
+              </p>
+              <hr
+                style={{ borderColor: colorHex }}
+                className="border-[0.10rem]  mb-1 border-gray-400"
+              />
+            </>
+          )}
         </span>
         <div className="whitespace-pre-line text-base leading-snug">
           {summary}

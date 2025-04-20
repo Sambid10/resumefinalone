@@ -8,7 +8,7 @@ interface ColorPikerProps {
   color: Color | undefined;
   onChange: ColorChangeHandler;
 }
-const customColors = ['#FF6900', '#FCB900', '#7BDCB5', '#00D084', '#8ED1FC', '#0693E3', '#ABB8C3', '#EB144C', '#F78DA7', '#102E50'];
+const customColors = ['#FF6900', '#FCB900', '#7BDCB5', '#00D084', '#8ED1FC', '#0693E3', '#ABB8C3', '#000', '#F78DA7', '#102E50'];
 export default function ColorPicker({ color, onChange }: ColorPikerProps) {
   const [showPopOver, setshowPopOver] = useState(false);
   return (
@@ -18,7 +18,7 @@ export default function ColorPicker({ color, onChange }: ColorPikerProps) {
         title="Change Resume Color"
           onClick={() => setshowPopOver(true)}
           size={"icon"}
-          className="bg-[#121212] text-gray hover:bg-black"
+          className="bg-[#121212] text-gray  border-stone-400 hover:bg-black"
         >
           <PaletteIcon className="size-5" />
         </Button>
