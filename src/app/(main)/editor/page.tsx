@@ -24,7 +24,7 @@ export default async function Editorpage({ searchParams }: Props) {
     : null;
 
   return (
-    <div className="font-roboto relative z-30">
+    <div className="font-roboto relative z-30 w-full">
       <ResumeEditor 
       resumeToEdit={resumeToedit}
       />

@@ -45,7 +45,7 @@ export default async function Resumepage() {
           <p> Total : {totalCount}</p>
         </div>
 
-        <div className="flex flex-col sm:grid grid-cols-2 md:grid-cols-3 pb-6 w-full gap-6">
+        <div className="flex flex-col sm:grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3  pb-6 w-full gap-6">
           {resume.map((resume) => (
             <ResumeItems key={resume.id} resume={resume} />
           ))}

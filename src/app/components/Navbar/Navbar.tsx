@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 export default function Navbar() {
   return (
-    <header className="h-18 border-b border-slate-500  w-full  sticky top-0 bg-transparent z-30">
+    <header className="h-18 border-b border-slate-500  w-full  sticky top-0 bg-black z-[100]">
       <div className="mx-auto px-6 xl:px-0 max-w-7xl flex items-center justify-between h-full">
         <Link 
         href={"/"}
